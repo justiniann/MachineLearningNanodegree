@@ -126,7 +126,6 @@ class Simulator(object):
         trial = 1
 
         while True:
-
             # Flip testing switch
             if not testing:
                 if total_trials > 20: # Must complete minimum 20 training trials
