@@ -53,7 +53,8 @@ class LearningAgent(Agent):
             self.epsilon = 0
             self.alpha = 0
         else:
-            self.epsilon = 1 / math.pow(self.trial_num, 2)
+            # self.epsilon = 1 / math.pow(self.trial_num, 1.2)
+            self.epsilon = 1 / math.pow(2, (self.trial_num*0.2))
             self.trial_num += 1
         return None
 
@@ -114,8 +115,9 @@ class LearningAgent(Agent):
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
         if self.learning:
-            utility_of_current_state = reward + (self.epsilon * self.get_maxQ(state))
-            self.Q[state][action] = ((1-self.alpha) * utility_of_current_state) + (self.alpha * self.Q[state][action])
+            # utility_of_current_state = reward + (self.epsilon * self.get_maxQ(state))
+            # self.Q[state][action] = ((1-self.alpha) * utility_of_current_state) + (self.alpha * self.Q[state][action])
+            self.Q[state][action] = self.alpha * reward + (1 - self.alpha) * self.Q[state][action]
 
     def update(self):
         """ The update function is called when a time step is completed in the
@@ -148,7 +150,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning=True, alpha=0.35)
+    agent = env.create_agent(LearningAgent, learning=True, alpha=0.4)
     
     ##############
     # Follow the driving agent
