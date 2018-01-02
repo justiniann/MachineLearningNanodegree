@@ -1,4 +1,11 @@
 mini-projects/*
+projects/dog-project/test_images/*
+projects/dog-project/dogImages/*
+projects/dog-project/lfw/*
+projects/dog-project/bottleneck_features/*
+projects/dog-project/__MACOSX/*
+projects/dog-project/__pychache__/*
+projects/dog-project/.ipynb_checkpoints/*
 
 .idea/*
 
